@@ -39,3 +39,48 @@ if (window.location.pathname == "/login.html") {
       }
     });
   }
+  if (window.location.pathname == "/signup.html") {
+    const registerForm = document.getElementById("register-form");
+    const registerButton = document.getElementById("submit");
+    const registerErrorMsg = document.getElementById("error-msg");
+    registerButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      const username = registerForm.username.value;
+      const email = registerForm.email.value;
+      const password = registerForm.password.value;
+  
+      if (email === "") {
+        registerErrorMsg.style.opacity = 1;
+        registerErrorMsg.innerHTML = "Email is required";
+      } else if (username === "") {
+        registerErrorMsg.style.opacity = 1;
+        registerErrorMsg.innerHTML = "Username is required";
+      } else if (password === "") {
+        registerErrorMsg.style.opacity = 1;
+        registerErrorMsg.innerHTML = "Password is required";
+      } else {
+        fetch("http://localhost:3000/users")
+          .then(function (response) {
+            console.log(response);
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data.length);
+            fetch(`http://localhost:3000/users/`, {
+              method: "POST",
+              body: JSON.stringify({
+                id: data.length + 1,
+                username: username,
+                email: email,
+                password: password,
+              }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            })
+              .then((response) => response.json())
+              .then((json) => location.replace("http://127.0.0.1:5500/login.html"));
+          });
+      }
+    });
+  }
