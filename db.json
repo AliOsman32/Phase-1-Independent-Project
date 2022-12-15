@@ -1,0 +1,77 @@
+{
+  "todo": [
+    {
+      "id": 1,
+      "todo": "Attending to some assignments",
+      "time_recorded": "12/12/2022 08:30am",
+      "deadline": "12/12/2022 10:30am",
+      "is_done": true
+    },
+    {
+      "id": 2,
+      "todo": "Go shopping",
+      "time_recorded": "15/11/2022 9:13",
+      "deadline": "2022-12-15 09:13",
+      "is_done": false
+    },
+    {
+      "id": 3,
+      "todo": "Brush my teeth",
+      "time_recorded": "11/12/2022 06:30am",
+      "deadline": "11/12/2022 08:30am",
+      "is_done": false
+    },
+    {
+      "id": 4,
+      "todo": "Wash utensils",
+      "time_recorded": "14/11/2022 18:38",
+      "deadline": "2022-12-16 06:41",
+      "is_done": false
+    },
+    {
+      "id": 6,
+      "todo": "Go to gyms",
+      "time_recorded": "14/11/2022 18:39",
+      "deadline": "2022-12-16 18:40",
+      "is_done": false
+    },
+    {
+      "id": 7,
+      "todo": "Go swimming",
+      "time_recorded": "15/11/2022 11:31",
+      "deadline": "2022-12-17 11:31",
+      "is_done": false
+    },
+    {
+      "id": 8,
+      "todo": "Go home",
+      "time_recorded": "15/11/2022 11:52",
+      "deadline": "2022-12-16 11:53",
+      "is_done": false
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "Joshua",
+      "password": "12345"
+    },
+    {
+      "id": 2,
+      "username": "Ali",
+      "password": "12345"
+    },
+    {
+      "id": 3,
+      "username": "Ali",
+      "email": "joshuakithinjinyaga@gmail.com",
+      "password": "josh7933"
+    },
+    {
+      "id": 4,
+      "username": "nelson",
+      "email": "nelson@gmail.com",
+      "password": "josh7933"
+    }
+  ]
+}
