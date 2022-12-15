@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>TO DO APPLICATION</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TO DO APP  -> <span id="username"> </span></div>
+            <ul class="nav-items">
+                <li><a href="index.html">Todos</a></li>
+                <li><a href="add.html">Add TO do</a></li>
+                <li  class="active"><a href="suggestion.html">Suggestions</a></li>
+                <li><a href="login.html">Logout</a>  </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="panel">
+                <p class="activity">Activity:<span id="activity">Invite some friends over for a game night</span></p>
+                <p class="activity">Type:<span id="type">social</span></p>
+                <p class="activity">Participants: <span id="participants">4</span></p>
+                <p class="activity">Price: $<span id="price">0</span></p>
+
+                
+            </div>
+            <button class="btn btn-suggest" id="btnNext">Next</button>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
