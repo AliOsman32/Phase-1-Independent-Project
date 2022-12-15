@@ -384,3 +384,40 @@ if (window.location.pathname == "/login.html") {
         }
       });
     }
+    if (window.location.pathname == "/suggestion.html") {
+        if(localStorage.getItem("id") ===undefined){
+          location.replace("http://127.0.0.1:5500/index.html");
+        }
+        console.log(localStorage.getItem("id"))
+        const username = document.getElementById("username");
+        username.innerHTML = "(" + localStorage.getItem("username") + ")";
+        const activity = document.getElementById("activity");
+        const type = document.getElementById("type");
+        const participants = document.getElementById("participants");
+        const price = document.getElementById("price");
+        const buttonNext = document.getElementById("btnNext");
+      
+        fetch("https://www.boredapi.com/api/activity")
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            activity.innerHTML = data.activity;
+            type.innerHTML = data.type;
+            participants.innerHTML = data.participants;
+            price.innerHTML = data.price;
+          });
+      
+        buttonNext.addEventListener("click", () => {
+          fetch("https://www.boredapi.com/api/activity")
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (data) {
+              activity.innerHTML = data.activity;
+              type.innerHTML = data.type;
+              participants.innerHTML = data.participants;
+              price.innerHTML = data.price;
+            });
+        });
+      }
