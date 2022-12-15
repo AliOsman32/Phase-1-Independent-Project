@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>TO DO APPLICATION</title>
+</head>
+<body>
+    <header>
+        <h1>Register</h1>
+    </header>
+    <main>
+        <br><p><br></p>
+        <div class="container">
+            <form  id="register-form">
+                <h4>Sign up</h4>
+                <p id="error-msg">An error occurred</p>
+                <label for="username">Username</label>
+                <input type="text" id="username" class="form-control" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" required>
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" required>
+                <br>
+                <p>Already registered? <a href="login.html">Login</a></p>
+                <button type="submit" id="submit" class="btn btn-submit">Register</button>
+            </form>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
