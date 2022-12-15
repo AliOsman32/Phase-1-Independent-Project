@@ -254,3 +254,133 @@ if (window.location.pathname == "/login.html") {
         .then((json) => alert(`Item with id ${id} will be deleted`));
     }
   }
+  if (window.location.pathname == "/add.html") {
+    if(localStorage.getItem("id") ===undefined){
+      location.replace("http://127.0.0.1:5500/index.html");
+    }
+    const username = document.getElementById("username");
+    username.innerHTML = "(" + localStorage.getItem("username") + ")";
+  
+    const addErrorMsg = document.getElementById("error-msg");
+    const todoForm = document.getElementById("todo-form");
+    const todoButton = document.getElementById("addtodo");
+    const currentDate = new Date();
+    console.log(
+      currentDate.getDate() +
+        "/" +
+        currentDate.getMonth() +
+        "/" +
+        currentDate.getFullYear() +
+        " " +
+        currentDate.getHours() +
+        ":" +
+        currentDate.getMinutes()
+    );
+    todoButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      const todo = todoForm.todo.value;
+      const date = todoForm.date.value;
+      const time = todoForm.time.value;
+  
+      if (todo === "" || date === "" || time === "") {
+        addErrorMsg.style.opacity = 1;
+        addErrorMsg.innerHTML = "Fill in the empty fields";
+      } else {
+        fetch("http://localhost:3000/todo")
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            const id = data[data.length-1].id
+            fetch(`http://localhost:3000/todo`, {
+              method: "POST",
+              body: JSON.stringify({
+                id: id + 1,
+                todo: todo,
+                time_recorded:
+                  currentDate.getDate() +
+                  "/" +
+                  currentDate.getMonth() +
+                  "/" +
+                  currentDate.getFullYear() +
+                  " " +
+                  currentDate.getHours() +
+                  ":" +
+                  currentDate.getMinutes(),
+                deadline: date + " " + time,
+                is_done: false,
+              }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            })
+              .then((response) => response.json())
+              .then((json) => location.replace("http://127.0.0.1:5500/index.html"));
+          });
+      }
+    });
+  }
+  if (window.location.pathname == "/edit.html") {
+    if(!localStorage.getItem("id")){
+      location.replace("http://127.0.0.1:5500/index.html");
+    }
+    
+      const username = document.getElementById("username");
+      username.innerHTML = "(" + localStorage.getItem("username") + ")";
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const urlId = urlParams.get('id')
+      const addErrorMsg = document.getElementById("error-msg");
+      const todoForm = document.getElementById("todo-form");
+      const todoButton = document.getElementById("addtodo");
+      const currentDate = new Date();
+      
+      fetch(`http://localhost:3000/todo/${urlId}`)
+      .then(function (response) {
+        console.log(response);
+        return response.json();
+      })
+      .then(function (data) {
+          todoForm.todo.value = data.todo
+  
+          todoForm.date.value = new Date(data.time_recorded[10])
+          console.log( data.time_recorded[10])
+      })
+      todoButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const todo = todoForm.todo.value;
+        const date = todoForm.date.value;
+        const time = todoForm.time.value;
+    
+        if (todo === "" || date === "" || time === "") {
+          addErrorMsg.style.opacity = 1;
+          addErrorMsg.innerHTML = "Fill in the empty fields";
+        } else {
+          
+              fetch(`http://localhost:3000/todo/${urlId}`, {
+                method: "PATCH",
+                body: JSON.stringify({
+                  todo: todo,
+                  time_recorded:
+                    currentDate.getDate() +
+                    "/" +
+                    currentDate.getMonth() +
+                    "/" +
+                    currentDate.getFullYear() +
+                    " " +
+                    currentDate.getHours() +
+                    ":" +
+                    currentDate.getMinutes(),
+                  deadline: date + " " + time,
+                  is_done: false,
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                },
+              })
+                .then((response) => response.json())
+                .then((json) => location.replace("http://127.0.0.1:5500/index.html"));
+            
+        }
+      });
+    }
