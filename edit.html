@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>TO DO APPLICATION</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">TO DO APP  -> <span id="username"> </span></div>
+            <ul class="nav-items">
+                <li><a href="index.html">Todos</a></li>
+                <li class="active"><a href="add.html">Add TO do</a></li>
+                <li><a href="suggestion.html">Suggestions</a></li>
+                <li><a href="login.html">Logout</a>  </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <form id="todo-form">
+                <h4>Update TODO</h4>
+                <p id="error-msg">An error occurred</p>
+                <input type="text" class="form-control" id="todo" placeholder="TO DO">
+                <label for="date">Date</label>
+                <input type="date" id="date" class="form-control" >
+                <label for="time">Time</label>
+                <input type="time" id="time" class="form-control" >
+                <button id="addtodo" type="submit" class="btn btn-submit">Update</button>
+            </form>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

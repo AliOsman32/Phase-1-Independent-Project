@@ -84,3 +84,173 @@ if (window.location.pathname == "/login.html") {
       }
     });
   }
+  if (window.location.pathname == "/index.html"||window.location.pathname == "/") {
+    if(!localStorage.getItem("id")){
+      location.replace("http://127.0.0.1:5500/index.html");
+    }
+    const username = document.getElementById("username");
+    username.innerHTML = "(" + localStorage.getItem("username") + ")";
+    const container = document.getElementById("container");
+    const search = document.getElementById("search");
+    const searchInput = document.getElementById("searchInput");
+    const formSearch = document.getElementById("formSearch");
+    let title,
+      card,
+      cardInfo,
+      timeRecorded,
+      deadline,
+      btnEdit,
+      btnDelete,
+      btnDone,
+      completed,
+      actionButtons;
+      fetch(`http://localhost:3000/todo`)
+        .then(function (response) {
+          console.log(response);
+          return response.json();
+        })
+        .then(function (data) {
+          data.forEach((todo) => {
+            title = document.createElement("h3");
+            card = document.createElement("div");
+            cardInfo = document.createElement("div");
+            timeRecorded = document.createElement("p");
+            deadline = document.createElement("p");
+            actionButtons = document.createElement("div");
+            btnEdit = document.createElement("button");
+            btnDelete = document.createElement("button");
+            completed = document.createElement("div");
+            btnDone = document.createElement("button");
+  
+            card.classList.add("card");
+            cardInfo.classList.add("card-info");
+            actionButtons.classList.add("action-buttons");
+            btnEdit.classList.add("btn");
+            btnEdit.classList.add("btn-edit");
+            btnEdit.innerHTML = "Edit";
+            btnDelete.classList.add("btn");
+            btnDelete.classList.add("btn-delete");
+            btnDelete.innerHTML = "Delete";
+            btnDone.classList.add("btn");
+            btnDone.classList.add("btn-done");
+            btnDone.innerHTML = "Done  ✔️";
+            completed.classList.add("completed");
+  
+            container.appendChild(card);
+            card.appendChild(cardInfo);
+            card.appendChild(completed);
+            cardInfo.appendChild(title);
+            cardInfo.appendChild(timeRecorded);
+            cardInfo.appendChild(deadline);
+            cardInfo.appendChild(actionButtons);
+            actionButtons.appendChild(btnEdit);
+            actionButtons.appendChild(btnDelete);
+            completed.appendChild(btnDone);
+  
+            btnDone.setAttribute("onclick", `done(${todo.id})`);
+            btnDelete.setAttribute("onclick", `deleteItem(${todo.id})`);
+            btnEdit.addEventListener("click", ()=>{
+              location.replace(`http://127.0.0.1:5500/edit.html?id=${todo.id}`)
+            })
+            title.innerHTML = todo.todo;
+            timeRecorded.innerHTML = `Time Recorded : <span>${todo.time_recorded}</span>`;
+            deadline.innerHTML = `Deadline : <span>${todo.deadline}</span>`;
+            if (todo.is_done === true) {
+              btnDone.style.display = "none";
+              btnDelete.style.display = "none";
+              btnEdit.style.display = "none";
+              card.classList.add("cardcompleted");
+            }
+          });
+        });
+        function changeInput(){
+         const  searchString = document.getElementById("searchInput").value
+         fetch(`http://localhost:3000/todo?todo_like=${searchString}`)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          const cards = document.querySelectorAll('.card');
+  
+  cards.forEach(card => {
+    card.remove();
+  });
+          data.forEach((todo) => {
+            title = document.createElement("h3");
+            card = document.createElement("div");
+            cardInfo = document.createElement("div");
+            timeRecorded = document.createElement("p");
+            deadline = document.createElement("p");
+            actionButtons = document.createElement("div");
+            btnEdit = document.createElement("button");
+            btnDelete = document.createElement("button");
+            completed = document.createElement("div");
+            btnDone = document.createElement("button");
+  
+            card.classList.add("card");
+            cardInfo.classList.add("card-info");
+            actionButtons.classList.add("action-buttons");
+            btnEdit.classList.add("btn");
+            btnEdit.classList.add("btn-edit");
+            btnEdit.innerHTML = "Edit";
+            btnDelete.classList.add("btn");
+            btnDelete.classList.add("btn-delete");
+            btnDelete.innerHTML = "Delete";
+            btnDone.classList.add("btn");
+            btnDone.classList.add("btn-done");
+            btnDone.innerHTML = "Done  ✔️";
+            completed.classList.add("completed");
+  
+            container.appendChild(card);
+            card.appendChild(cardInfo);
+            card.appendChild(completed);
+            cardInfo.appendChild(title);
+            cardInfo.appendChild(timeRecorded);
+            cardInfo.appendChild(deadline);
+            cardInfo.appendChild(actionButtons);
+            actionButtons.appendChild(btnEdit);
+            actionButtons.appendChild(btnDelete);
+            completed.appendChild(btnDone);
+  
+            btnDone.setAttribute("onclick", `done(${todo.id})`);
+            btnDelete.setAttribute("onclick", `deleteItem(${todo.id})`);
+            btnEdit.addEventListener("click", ()=>{
+              location.replace(`http://127.0.0.1:5500/edit.html?id=${todo.id}`)
+            })
+            title.innerHTML = todo.todo;
+            timeRecorded.innerHTML = `Time Recorded : <span>${todo.time_recorded}</span>`;
+            deadline.innerHTML = `Deadline : <span>${todo.deadline}</span>`;
+            if (todo.is_done === true) {
+              btnDone.style.display = "none";
+              btnDelete.style.display = "none";
+              btnEdit.style.display = "none";
+              card.classList.add("cardcompleted");
+            }
+          });
+        });
+        }
+    function done(id) {
+      fetch(`http://localhost:3000/todo/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          is_done: true,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+    }
+    function deleteItem(id) {
+      fetch(`http://localhost:3000/todo/${id}`, {
+        method: "DELETE",
+        
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => alert(`Item with id ${id} will be deleted`));
+    }
+  }
