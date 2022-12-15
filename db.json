@@ -12,7 +12,7 @@
       "todo": "Go shopping",
       "time_recorded": "15/11/2022 9:13",
       "deadline": "2022-12-15 09:13",
-      "is_done": false
+      "is_done": true
     },
     {
       "id": 3,
@@ -72,6 +72,12 @@
       "username": "nelson",
       "email": "nelson@gmail.com",
       "password": "josh7933"
+    },
+    {
+      "id": 5,
+      "username": "gopro4",
+      "email": "ali.osman@student.moringaschool.com",
+      "password": "Sacramento@32"
     }
   ]
 }

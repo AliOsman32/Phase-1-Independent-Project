@@ -85,9 +85,10 @@ if (window.location.pathname == "/login.html") {
     });
   }
   if (window.location.pathname == "/index.html"||window.location.pathname == "/") {
-    if(!localStorage.getItem("id")){
-      location.replace("http://127.0.0.1:5500/index.html");
-    }
+    if(localStorage.getItem("id")===undefined||localStorage.getItem("id")===null){
+        location.replace("http://127.0.0.1:5500/login.html");
+
+      }
     const username = document.getElementById("username");
     username.innerHTML = "(" + localStorage.getItem("username") + ")";
     const container = document.getElementById("container");
@@ -255,9 +256,9 @@ if (window.location.pathname == "/login.html") {
     }
   }
   if (window.location.pathname == "/add.html") {
-    if(localStorage.getItem("id") ===undefined){
-      location.replace("http://127.0.0.1:5500/index.html");
-    }
+    if(localStorage.getItem("id")===undefined||localStorage.getItem("id")===null){
+        location.replace("http://127.0.0.1:5500/login.html");
+      }
     const username = document.getElementById("username");
     username.innerHTML = "(" + localStorage.getItem("username") + ")";
   
@@ -321,9 +322,9 @@ if (window.location.pathname == "/login.html") {
     });
   }
   if (window.location.pathname == "/edit.html") {
-    if(!localStorage.getItem("id")){
-      location.replace("http://127.0.0.1:5500/index.html");
-    }
+    if(localStorage.getItem("id")===undefined||localStorage.getItem("id")===null){
+        location.replace("http://127.0.0.1:5500/login.html");
+      }
     
       const username = document.getElementById("username");
       username.innerHTML = "(" + localStorage.getItem("username") + ")";
@@ -385,9 +386,9 @@ if (window.location.pathname == "/login.html") {
       });
     }
     if (window.location.pathname == "/suggestion.html") {
-        if(localStorage.getItem("id") ===undefined){
-          location.replace("http://127.0.0.1:5500/index.html");
-        }
+        if(localStorage.getItem("id")===undefined||localStorage.getItem("id")===null){
+            location.replace("http://127.0.0.1:5500/login.html");
+          }
         console.log(localStorage.getItem("id"))
         const username = document.getElementById("username");
         username.innerHTML = "(" + localStorage.getItem("username") + ")";
@@ -420,4 +421,10 @@ if (window.location.pathname == "/login.html") {
               price.innerHTML = data.price;
             });
         });
+      }
+      function logout(){
+        localStorage.removeItem("id");
+        localStorage.removeItem("username");
+        localStorage.removeItem("password");
+        location.reload()
       }
