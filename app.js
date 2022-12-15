@@ -22,7 +22,7 @@ if (window.location.pathname == "/login.html") {
           .then(function (data) {
             if(data.length >0){
                 alert("You have successfully logged in.");
-                localStorage.setItem("id", data.id);
+                localStorage.setItem("id", data[0].id);
                 localStorage.setItem("username", username);
                 localStorage.setItem("password", password);
                 location.replace("http://127.0.0.1:5500/index.html");
@@ -105,7 +105,7 @@ if (window.location.pathname == "/login.html") {
       btnDone,
       completed,
       actionButtons;
-      fetch(`http://localhost:3000/todo`)
+      fetch(`http://localhost:3000/todo?userid=${localStorage.getItem("id")}`)
         .then(function (response) {
           console.log(response);
           return response.json();
@@ -259,6 +259,7 @@ if (window.location.pathname == "/login.html") {
     if(localStorage.getItem("id")===undefined||localStorage.getItem("id")===null){
         location.replace("http://127.0.0.1:5500/login.html");
       }
+      console.log(localStorage.getItem("id"))
     const username = document.getElementById("username");
     username.innerHTML = "(" + localStorage.getItem("username") + ")";
   
@@ -297,6 +298,7 @@ if (window.location.pathname == "/login.html") {
               method: "POST",
               body: JSON.stringify({
                 id: id + 1,
+                userid:localStorage.getItem("id"),
                 todo: todo,
                 time_recorded:
                   currentDate.getDate() +
