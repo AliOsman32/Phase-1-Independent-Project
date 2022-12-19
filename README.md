@@ -42,4 +42,8 @@ https://www.codecademy.com/
 (w3schools)
 https://www.w3schools.com/
 (freecodecamp)
+<<<<<<< HEAD
 https://www.freecodecamp.org/news/what-is-the-dom-document-object-model-meaning-in-javascript/
+=======
+https://www.freecodecamp.org/news/what-is-the-dom-document-object-model-meaning-in-javascript/
+>>>>>>> d3fe90b07b2300c13180e1cff42cf5999cb0629f
