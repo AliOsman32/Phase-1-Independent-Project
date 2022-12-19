@@ -207,6 +207,9 @@ nav{
     margin: 1rem 0;
     opacity: 0;
 }
+#wrapper-index,#wrapper-register, #wrapper-login, #wrapper-add, #wrapper-edit, #wrapper-suggestions{
+    display: none;
+}
 @media(max-width: 1100px){
     .panel{
         width: 70%;

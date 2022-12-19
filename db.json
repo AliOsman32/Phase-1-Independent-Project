@@ -25,14 +25,6 @@
       "is_done": false
     },
     {
-      "id": 4,
-      "userid": 5,
-      "todo": "Wash utensils",
-      "time_recorded": "14/11/2022 18:38",
-      "deadline": "2022-12-16 06:41",
-      "is_done": false
-    },
-    {
       "id": 6,
       "userid": 5,
       "todo": "Go to gyms",
@@ -62,6 +54,14 @@
       "todo": "study",
       "time_recorded": "15/11/2022 13:41",
       "deadline": "2022-12-14 16:41",
+      "is_done": false
+    },
+    {
+      "id": 10,
+      "userid": "5",
+      "todo": "praying",
+      "time_recorded": "19/11/2022 13:29",
+      "deadline": "2022-11-19 15:31",
       "is_done": false
     }
   ],

@@ -1,4 +1,3 @@
-console.log(window.location.href)
 let wrapperLogin = document.getElementById("wrapper-login")
 let wrapperIndex = document.getElementById("wrapper-index")
 let wrapperRegister = document.getElementById("wrapper-register")
@@ -16,8 +15,8 @@ if (window.location.href=== "http://127.0.0.1:5500/#login") {
     const loginErrorMsg = document.getElementById("error-msg");
     loginButton.addEventListener("click", (e) => {
       e.preventDefault();
-      const username = loginForm.username.value;
-      const password = loginForm.password.value;
+      const username = loginForm.usernameLogin.value;
+      const password = loginForm.passwordLogin.value;
   
        if (username === "") {
         loginErrorMsg.style.opacity = 1;
@@ -56,24 +55,16 @@ if (window.location.href === "http://127.0.0.1:5500/#register") {
   wrapperRegister.style.display = "block";
   header.style.display = "none";
   const registerForm = document.getElementById("register-form");
-  const registerButton = document.getElementById("submit");
+  const registerButton = document.getElementById("submitRegister");
   const registerErrorMsg = document.getElementById("error-msg");
   registerButton.addEventListener("click", (e) => {
     e.preventDefault();
-    const username = registerForm.username.value;
-    const email = registerForm.email.value;
-    const password = registerForm.password.value;
 
-    if (email === "") {
-      registerErrorMsg.style.opacity = 1;
-      registerErrorMsg.innerHTML = "Email is required";
-    } else if (username === "") {
-      registerErrorMsg.style.opacity = 1;
-      registerErrorMsg.innerHTML = "Username is required";
-    } else if (password === "") {
-      registerErrorMsg.style.opacity = 1;
-      registerErrorMsg.innerHTML = "Password is required";
-    } else {
+    const username = registerForm.usernameRegister.value;
+    const email = registerForm.emailRegister.value;
+    const password = registerForm.passwordRegister.value;
+
+
       fetch("http://localhost:3000/users")
         .then(function (response) {
           console.log(response);
@@ -96,7 +87,7 @@ if (window.location.href === "http://127.0.0.1:5500/#register") {
             .then((response) => response.json())
             .then((json) =>  reloadLogin());
         });
-    }
+    
   });
 }
 if (window.location.href === "http://127.0.0.1:5500/") {
@@ -125,7 +116,6 @@ if (window.location.href === "http://127.0.0.1:5500/") {
     actionButtons;
     fetch(`http://localhost:3000/todo?userid=${localStorage.getItem("id")}`)
       .then(function (response) {
-        console.log(response);
         return response.json();
       })
       .then(function (data) {
@@ -301,9 +291,9 @@ if (window.location.href ==="http://127.0.0.1:5500/#add") {
   );
   todoButton.addEventListener("click", (e) => {
     e.preventDefault();
-    const todo = todoForm.todo.value;
-    const date = todoForm.date.value;
-    const time = todoForm.time.value;
+    const todo = todoForm.todoAdd.value;
+    const date = todoForm.dateAdd.value;
+    const time = todoForm.timeAdd.value;
 
     if (todo === "" || date === "" || time === "") {
       addErrorMsg.style.opacity = 1;
@@ -411,24 +401,24 @@ if (url.split("=")[1]) {
       return response.json();
     })
     .then(function (data) {
-        todoForm.todo.value = data.todo
+        todoForm.todoUpdate.value = data.todo
 
-        todoForm.date.value =data.time_recorded.split(" ")[0]
-        todoForm.time.value =data.time_recorded.split(" ")[1]
+        todoForm.dateUpdate.value =data.time_recorded.split(" ")[0]
+        todoForm.timeUpdate.value =data.time_recorded.split(" ")[1]
         
     })
     todoButton.addEventListener("click", (e) => {
       e.preventDefault();
-      const todo = todoForm.todo.value;
-      const date = todoForm.date.value;
-      const time = todoForm.time.value;
+      const todo = todoForm.todoUpdate.value;
+      const date = todoForm.dateUpdate.value;
+      const time = todoForm.timeUpdate.value;
   
       if (todo === "" || date === "" || time === "") {
         addErrorMsg.style.opacity = 1;
         addErrorMsg.innerHTML = "Fill in the empty fields";
       } else {
         
-            fetch(`http://localhost:3000/todo/${urlId}`, {
+            fetch(`http://localhost:3000/todo/${url.split("=")[1]}`, {
               method: "PATCH",
               body: JSON.stringify({
                 todo: todo,
@@ -450,7 +440,7 @@ if (url.split("=")[1]) {
               },
             })
               .then((response) => response.json())
-              .then((json) => location.replace("http://127.0.0.1:5500/index.html"));
+              .then((json) => location.replace("http://127.0.0.1:5500"));
           
       }
     });
