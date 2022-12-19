@@ -7,30 +7,107 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/x-icon" href="logo.png">
     <link rel="stylesheet" href="style.css">
+    
     <title>TO DO APPLICATION</title>
 </head>
 <body>
-    <header>
+    <header id="header">
         <nav>
             <div class="logo">TO DO APP  -> <span id="username"> </span></div>
             <ul class="nav-items">
-                <li class="active"><a href="index.html">Todos</a></li>
-                <li><a href="add.html">Add TO do</a></li>
-                <li><a href="suggestion.html">Suggestions</a></li>
-                <li><a onclick="logout()" >Logout</a>  </li>
+                <li id="index"><a onclick="reloadIndex()" href="/" >Todos</a></li>
+                <li id="add"><a onclick="reloadAdd()" href="#add" >Add TO do</a></li>
+                <li id="suggestions"><a  onclick="reloadSuggestions()" href="#suggestions" >Suggestions</a></li>
+                <li><a onclick="logout()">Logout</a>  </li>
             </ul>
         </nav>
     </header>
     <main>
        
-        <div class="container" id="container">
-            <form class="search" id="formSearch">
-                <input type="text" id="searchInput" onchange="changeInput()" class="form-control" placeholder="Search todo...">
-                
-            </form>
-           
-           
-
+        <div id="wrapper-index">
+            <div class="container" id="container">
+                <form class="search" id="formSearch">
+                    <input type="text" id="searchInput" onchange="changeInput()" class="form-control" placeholder="Search todo...">
+                    
+                </form>
+               
+               
+    
+            </div>
+        </div>
+        <div id="wrapper-login">
+            <div class="container">
+                <form  id="login-form">
+                    <h4>Login</h4>
+                    <p id="error-msg">An error occurred</p>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="form-control" required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" required>
+                    <br>
+                    <p>New here? <a onclick="reloadRegister()" href="http://127.0.0.1:5500/#register">Register</a></p>
+                    <button type="submit" id="submit" class="btn btn-submit">Login</button>
+                </form>
+            </div>
+        </div>
+        <div id="wrapper-add">
+            <div class="container">
+                <form id="todo-form">
+                    <h4>Add TODO</h4>
+                    <p id="error-msg">An error occurred</p>
+                    <input type="text" class="form-control" id="todo" placeholder="TO DO">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" class="form-control" >
+                    <label for="time">Time</label>
+                    <input type="time" id="time" class="form-control" >
+                    <button id="addtodo" type="submit" class="btn btn-submit">Add</button>
+                </form>
+            </div>
+        </div>
+        <div id="wrapper-edit">
+            <div class="container">
+                <a onclick="reloadIndex()" class="btn" href="/" >Back</a>
+                <form id="todo-form-update">
+                    <h4>Update TODO</h4>
+                    <p id="error-msg">An error occurred</p>
+                    <input type="text" class="form-control" id="todo" placeholder="TO DO">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" class="form-control" >
+                    <label for="time">Time</label>
+                    <input type="time" id="time" class="form-control" >
+                    <button id="updatetodo" type="submit" class="btn btn-submit">Update</button>
+                </form>
+            </div>
+        </div>
+        <div id="wrapper-register">
+            <div class="container">
+                <form  id="register-form">
+                    <h4>Sign up</h4>
+                    <p id="error-msg">An error occurred</p>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="form-control" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" required>
+                    <br>
+                    <p>Already registered? <a onclick="reloadLogin()" href="#login">Login</a></p>
+                    <button type="submit" id="submit" class="btn btn-submit">Register</button>
+                </form>
+            </div>
+        </div>
+        <div id="wrapper-suggestions">
+            <div class="container">
+                <div class="panel">
+                    <p class="activity">Activity:<span id="activity">Invite some friends over for a game night</span></p>
+                    <p class="activity">Type:<span id="type">social</span></p>
+                    <p class="activity">Participants: <span id="participants">4</span></p>
+                    <p class="activity">Price: $<span id="price">0</span></p>
+    
+                    
+                </div>
+                <button class="btn btn-suggest" id="btnNext">Next</button>
+            </div>
         </div>
     </main>
     <script src="app.js"></script>
