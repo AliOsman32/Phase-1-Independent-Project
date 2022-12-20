@@ -440,7 +440,7 @@ if (url.split("=")[1]) {
               },
             })
               .then((response) => response.json())
-              .then((json) => location.replace("http://127.0.0.1:5500"));
+              .then((json) => location.replace("https://phase-1-independent-project.vercel.app"));
           
       }
     });
