@@ -6,7 +6,7 @@ let wrapperEdit = document.getElementById("wrapper-edit")
 let wrapperAdd= document.getElementById("wrapper-add")
 
 
-if (window.location.href=== "https://aliosman32.github.io/Phase-1-Independent-Project/#login") {
+if (window.location.href=== "https://phase-1-independent-project.vercel.app/#login") {
   const header = document.getElementById("header")
   wrapperLogin.style.display = "block";
   header.style.display = "none";
@@ -36,7 +36,7 @@ if (window.location.href=== "https://aliosman32.github.io/Phase-1-Independent-Pr
                 localStorage.setItem("id", data[0].id);
                 localStorage.setItem("username", username);
                 localStorage.setItem("password", password);
-                location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/");
+                location.replace("https://phase-1-independent-project.vercel.app/");
             }else{
                 loginErrorMsg.style.opacity = 1;
               loginErrorMsg.innerHTML = "Wrong credentials";
@@ -50,7 +50,7 @@ if (window.location.href=== "https://aliosman32.github.io/Phase-1-Independent-Pr
       }
     });
   }
-if (window.location.href === "https://aliosman32.github.io/Phase-1-Independent-Project/#register") {
+if (window.location.href === "https://phase-1-independent-project.vercel.app/#register") {
   wrapperLogin.style.display = "none"
   wrapperRegister.style.display = "block";
   header.style.display = "none";
@@ -90,11 +90,11 @@ if (window.location.href === "https://aliosman32.github.io/Phase-1-Independent-P
     
   });
 }
-if (window.location.href === "https://aliosman32.github.io/Phase-1-Independent-Project/") {
+if (window.location.href === "https://phase-1-independent-project.vercel.app/") {
   document.getElementById("index").classList.add("active")
   wrapperIndex.style.display = "block";
   if(localStorage.getItem("id")===undefined||localStorage.getItem("id")===null){
-    location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/#login");
+    location.replace("https://phase-1-independent-project.vercel.app/#login");
     location.reload();
   }
   
@@ -264,11 +264,11 @@ cards.forEach(card => {
       .then((json) => alert(`Item with id ${id} will be deleted`));
   }
 }
-if (window.location.href ==="https://aliosman32.github.io/Phase-1-Independent-Project/#add") {
+if (window.location.href ==="https://phase-1-independent-project.vercel.app/#add") {
   document.getElementById("add").classList.add("active")
   wrapperAdd.style.display = "block";
   if(localStorage.getItem("id")===undefined||localStorage.getItem("id")===null){
-    location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/#login");
+    location.replace("https://phase-1-independent-project.vercel.app/#login");
     location.reload();
   }
   const username = document.getElementById("username");
@@ -329,15 +329,15 @@ if (window.location.href ==="https://aliosman32.github.io/Phase-1-Independent-Pr
             },
           })
             .then((response) => response.json())
-            .then((json) => location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/"));
+            .then((json) => location.replace("https://phase-1-independent-project.vercel.app/"));
         });
     }
   });
 }
-if (window.location.href ==="https://aliosman32.github.io/Phase-1-Independent-Project/#suggestions") {
+if (window.location.href ==="https://phase-1-independent-project.vercel.app/#suggestions") {
   document.getElementById("suggestions").classList.add("active")
   if(localStorage.getItem("id")===undefined||localStorage.getItem("id")===null){
-    location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/#login");
+    location.replace("https://phase-1-independent-project.vercel.app/#login");
     location.reload();
   }
   console.log(localStorage.getItem("id"))
@@ -381,7 +381,7 @@ if (url.split("=")[1]) {
   console.log(url.split("=")[1])
   wrapperEdit.style.display = "block";
   if(localStorage.getItem("id")===undefined||localStorage.getItem("id")===null){
-    location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/#login");
+    location.replace("https://phase-1-independent-project.vercel.app/#login");
     location.reload();
   }
   
@@ -453,27 +453,27 @@ if (url.split("=")[1]) {
     location.reload();
   }
   function reloadSuggestions(){
-    location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/#suggestions")
+    location.replace("https://phase-1-independent-project.vercel.app/#suggestions")
     location.reload();
   }
   function reloadIndex(){
-    location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/#index")
+    location.replace("https://phase-1-independent-project.vercel.app/#index")
     location.reload();
   }
   function reloadAdd(){
-    location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/#add")
+    location.replace("https://phase-1-independent-project.vercel.app/#add")
     location.reload();
   }
   function reloadRegister(){
-    location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/#register")
+    location.replace("https://phase-1-independent-project.vercel.app/#register")
     location.reload();
   }
   function reloadLogin(){
-    location.replace("https://aliosman32.github.io/Phase-1-Independent-Project/#login")
+    location.replace("https://phase-1-independent-project.vercel.app/#login")
     location.reload();
   }
   function reloadEdit(id){
     
-    location.replace(`https://aliosman32.github.io/Phase-1-Independent-Project/#edit?id=${id}`)
+    location.replace(`https://phase-1-independent-project.vercel.app/#edit?id=${id}`)
     location.reload();
   }
